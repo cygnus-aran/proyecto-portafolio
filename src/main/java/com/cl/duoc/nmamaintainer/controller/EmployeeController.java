@@ -24,10 +24,10 @@ public class EmployeeController {
 
         employeeRegisterResponse = employeeRegisterService.findAll();
 
-        Response<EmployeeRegisterResponse> response = new Response<>(HttpStatus.FOUND.value(),
+        Response<EmployeeRegisterResponse> response = new Response<>(HttpStatus.CREATED.value(),
                 "Registros Encontrados", employeeRegisterResponse);
 
-        return new ResponseEntity<>(response, HttpStatus.FOUND);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
     @PostMapping("/register-employee")
     public ResponseEntity<Response<EmployeeRegisterResponse>> postRegisterEmployee

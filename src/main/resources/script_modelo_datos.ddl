@@ -66,23 +66,23 @@ CREATE TABLE prestadores (
 ALTER TABLE prestadores ADD CONSTRAINT prestadores_pk PRIMARY KEY ( rut_persona,
                                                                     id_usuario );
 
-CREATE TABLE prestador_servicio (
+CREATE TABLE relation_4 (
     prestadores_rut_persona INTEGER NOT NULL,
     prestadores_id_usuario  VARCHAR2(50) NOT NULL,
     servicios_id_servicio   INTEGER NOT NULL
 );
 
-ALTER TABLE prestador_servicio
-    ADD CONSTRAINT prestador_servicio_pk PRIMARY KEY ( prestadores_rut_persona,
+ALTER TABLE relation_4
+    ADD CONSTRAINT relation_4_pk PRIMARY KEY ( prestadores_rut_persona,
                                                prestadores_id_usuario,
                                                servicios_id_servicio );
 
-CREATE TABLE factura_servicio (
+CREATE TABLE relation_7 (
     servicios_id_servicio INTEGER NOT NULL,
     factura_id_factura    INTEGER NOT NULL
 );
 
-ALTER TABLE factura_servicio ADD CONSTRAINT factura_servicio_pk PRIMARY KEY ( servicios_id_servicio,
+ALTER TABLE relation_7 ADD CONSTRAINT relation_7_pk PRIMARY KEY ( servicios_id_servicio,
                                                                   factura_id_factura );
 
 CREATE TABLE roles (
@@ -96,7 +96,7 @@ CREATE TABLE servicios (
     id_servicio              INTEGER NOT NULL,
     nombre_servicio          VARCHAR2(50) NOT NULL,
     valor_servicio           INTEGER NOT NULL,
-    descripcion_servicio     VARCHAR2 (200),
+    descripcion_servicio     VARCHAR2(200),
     fecha_creacion_serrvicio DATE NOT NULL,
     fecha_baja_servicio      DATE NOT NULL
 );
@@ -143,13 +143,13 @@ ALTER TABLE prestadores
         REFERENCES persona ( rut_persona,
                              id_usuario );
 
-ALTER TABLE prestador_servicio
+ALTER TABLE relation_4
     ADD CONSTRAINT relation_4_prestadores_fk FOREIGN KEY ( prestadores_rut_persona,
                                                            prestadores_id_usuario )
         REFERENCES prestadores ( rut_persona,
                                  id_usuario );
 
-ALTER TABLE s
+ALTER TABLE relation_4
     ADD CONSTRAINT relation_4_servicios_fk FOREIGN KEY ( servicios_id_servicio )
         REFERENCES servicios ( id_servicio );
 
