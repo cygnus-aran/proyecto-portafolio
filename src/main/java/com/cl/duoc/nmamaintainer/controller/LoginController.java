@@ -24,8 +24,12 @@ public class LoginController {
             (@RequestBody LoginRequest loginRequest) {
         LoginResponse loginResponse = new LoginResponse();
         loginResponse = loginService.validate(loginRequest);
-        Response<LoginResponse> response = new Response<>();
-
-        return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
+        Response<LoginResponse> response;
+        if(loginResponse.getRol().length() == 0) {
+            response = new Response<>(HttpStatus.UNAUTHORIZED.value(), "Usuario Inválido", loginResponse);
+        } else {
+            response = new Response<>(HttpStatus.ACCEPTED.value(), "Consulta Exitosa", loginResponse);
+        }
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 }

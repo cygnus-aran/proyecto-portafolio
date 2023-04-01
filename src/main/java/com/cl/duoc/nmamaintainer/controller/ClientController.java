@@ -25,7 +25,8 @@ public class ClientController {
 
         ClientRegisterResponse clientRegisterResponse = new ClientRegisterResponse();
         clientRegisterResponse = clientRegisterService.register(clientRegisterRequest);
-        Response<ClientRegisterResponse> response = new Response<>();
+        Response<ClientRegisterResponse> response = new Response<>(HttpStatus.CREATED.value(),
+                "Pago informado", clientRegisterResponse);
 
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
