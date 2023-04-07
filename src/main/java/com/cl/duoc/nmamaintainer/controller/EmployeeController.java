@@ -18,7 +18,7 @@ public class EmployeeController {
     private EmployeeRegisterService employeeRegisterService;
 
     @GetMapping("/find-all")
-    public ResponseEntity<Response<EmployeeRegisterResponse>> postFindAllEmployees() {
+    public ResponseEntity<Response<EmployeeRegisterResponse>> getFindAllEmployees() {
 
         EmployeeRegisterResponse employeeRegisterResponse = new EmployeeRegisterResponse();
 
