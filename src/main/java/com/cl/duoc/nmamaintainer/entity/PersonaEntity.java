@@ -1,38 +1,28 @@
 package com.cl.duoc.nmamaintainer.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
-import java.util.Date;
-
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "persona")
+@Table(name = "persona", schema = "nma")
 public class PersonaEntity {
 
     @Id
-    @Column(name = "id_usuario")
-    private String idUsuario;
+    @Column(name = "id_persona")
+    private Integer idPersona;
 
-    @Column(name = "rut_persona")
-    private int rutPersona;
+    @Column(name = "run_persona")
+    private String runPersona;
 
     @Column(name = "nombre_persona")
     private String nombrePersona;
 
-    @Column(name = "id_empresa")
-    private int idEmpresa;
-
     @Column(name = "fecha_alta")
-    private Date fechaAlta;
+    private LocalDate fechaAlta;
 
     @Column(name = "fecha_baja")
-    private Date fechaBaja;
-
-    @Column(name = "fecha_nacimiento")
-    private Date fechaNacimiento;
+    private LocalDate fechaBaja;
 
     @Column(name = "estado_persona")
     private String estadoPersona;
@@ -40,36 +30,26 @@ public class PersonaEntity {
     @Column(name = "puesto_persona")
     private String puestoPersona;
 
-    @Column(name = "id_rol")
-    private int idRol;
+    @Column(name = "usuario_id_usuario")
+    private String usuarioIdUsuario;
 
-    @Column(name = "password")
-    private String password;
+    @Column(name = "rol_id_rol")
+    private String rolIdRol;
 
-    // getters and setters
-
-    public String getPassword() {
-        return password;
+    public Integer getIdPersona() {
+        return idPersona;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setIdPersona(Integer idPersona) {
+        this.idPersona = idPersona;
     }
 
-    public String getIdUsuario() {
-        return idUsuario;
+    public String getRunPersona() {
+        return runPersona;
     }
 
-    public void setIdUsuario(String idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public int getRutPersona() {
-        return rutPersona;
-    }
-
-    public void setRutPersona(int rutPersona) {
-        this.rutPersona = rutPersona;
+    public void setRunPersona(String runPersona) {
+        this.runPersona = runPersona;
     }
 
     public String getNombrePersona() {
@@ -80,36 +60,20 @@ public class PersonaEntity {
         this.nombrePersona = nombrePersona;
     }
 
-    public int getIdEmpresa() {
-        return idEmpresa;
-    }
-
-    public void setIdEmpresa(int idEmpresa) {
-        this.idEmpresa = idEmpresa;
-    }
-
-    public Date getFechaAlta() {
+    public LocalDate getFechaAlta() {
         return fechaAlta;
     }
 
-    public void setFechaAlta(Date fechaAlta) {
+    public void setFechaAlta(LocalDate fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
 
-    public Date getFechaBaja() {
+    public LocalDate getFechaBaja() {
         return fechaBaja;
     }
 
-    public void setFechaBaja(Date fechaBaja) {
+    public void setFechaBaja(LocalDate fechaBaja) {
         this.fechaBaja = fechaBaja;
-    }
-
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
     }
 
     public String getEstadoPersona() {
@@ -128,11 +92,19 @@ public class PersonaEntity {
         this.puestoPersona = puestoPersona;
     }
 
-    public int getIdRol() {
-        return idRol;
+    public String getUsuarioIdUsuario() {
+        return usuarioIdUsuario;
     }
 
-    public void setIdRol(int idRol) {
-        this.idRol = idRol;
+    public void setUsuarioIdUsuario(String usuarioIdUsuario) {
+        this.usuarioIdUsuario = usuarioIdUsuario;
+    }
+
+    public String getRolIdRol() {
+        return rolIdRol;
+    }
+
+    public void setRolIdRol(String rolIdRol) {
+        this.rolIdRol = rolIdRol;
     }
 }

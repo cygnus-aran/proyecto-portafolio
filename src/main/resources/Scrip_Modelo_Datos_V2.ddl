@@ -9,263 +9,402 @@
 
 -- predefined type, no DDL - XMLTYPE
 
-CREATE USER NMA_ADMIN IDENTIFIED BY NMA;
+-- ORACLE
+-- CREATE USER NMA_ADMIN IDENTIFIED BY NMA;
+--
+-- GRANT ALL PRIVILEGES TO NMA_ADMIN;
+--
+-- CREATE TABLESPACE NMA1 DATAFILE 'data_nma1.tbf' SIZE 4G AUTOEXTEND ON NEXT 200M MAXSIZE UNLIMITED;
+--
+-- ALTER USER NMA_ADMIN DEFAULT TABLESPACE NMA1;
 
-GRANT ALL PRIVILEGES TO NMA_ADMIN;
-
-CREATE TABLESPACE NMA1 DATAFILE 'data_nma1.tbf' SIZE 4G AUTOEXTEND ON NEXT 200M MAXSIZE UNLIMITED;
-
-ALTER USER NMA_ADMIN DEFAULT TABLESPACE NMA1;
+--POSTGRES
+CREATE SCHEMA nma;
+CREATE USER nma_admin WITH PASSWORD 'admin';
+GRANT ALL PRIVILEGES ON SCHEMA nma TO nma_admin;
+ALTER ROLE nma_admin SET search_path TO nma,public;
 
 CREATE TABLE cliente (
-    id_empresa          NVARCHAR2(1) NOT NULL,
-    rut_empresa         NVARCHAR2(1) NOT NULL,
-    nombre_empresa      NVARCHAR2(1),
-    fono_empresa        NVARCHAR2(1),
-    email_empresa       NVARCHAR2(1) NOT NULL,
-    responsable_empresa NVARCHAR2(1),
-    estado_empresa      CHAR(1) NOT NULL,
-    usuario_id_usuario  NVARCHAR2(1) NOT NULL,
-    rol_id_rol          NVARCHAR2(1) NOT NULL
+                         id SERIAL PRIMARY KEY,
+                         id_empresa          VARCHAR(255) NOT NULL,
+                         rut_empresa         VARCHAR(255) NOT NULL,
+                         nombre_empresa      VARCHAR(255),
+                         fono_empresa        VARCHAR(255),
+                         email_empresa       VARCHAR(255) NOT NULL,
+                         responsable_empresa VARCHAR(255),
+                         estado_empresa      CHAR(1) NOT NULL,
+                         usuario_id_usuario  VARCHAR(255) NOT NULL,
+                         rol_id_rol          VARCHAR(255) NOT NULL
 );
 
-CREATE UNIQUE INDEX cliente__idx ON
-    cliente (
-        usuario_id_usuario
-    ASC );
-
-CREATE UNIQUE INDEX cliente__idx ON
-    cliente (
-        rol_id_rol
-    ASC );
-
-ALTER TABLE cliente ADD CONSTRAINT cliente_pk PRIMARY KEY ( id_empresa );
 
 CREATE TABLE episodio (
-    id_episodio      NVARCHAR2(1) NOT NULL,
-    fecha_episodio   DATE NOT NULL,
-    estado           NVARCHAR2(1) NOT NULL,
-    formulario_folio NVARCHAR2(1) NOT NULL
+                          id_episodio      SERIAL PRIMARY KEY,
+                          fecha_episodio   DATE NOT NULL,
+                          estado           VARCHAR(255) NOT NULL,
+                          formulario_folio VARCHAR(255) NOT NULL
 );
 
-CREATE UNIQUE INDEX episodio__idx ON
-    episodio (
-        formulario_folio
-    ASC );
-
-ALTER TABLE episodio ADD CONSTRAINT episodio_pk PRIMARY KEY ( id_episodio );
 
 CREATE TABLE factura (
-    id_factura            NVARCHAR2(1) NOT NULL,
-    fecha_factura_emision DATE NOT NULL,
-    fectura_total_neto    NUMBER NOT NULL,
-    factura_total_bruto   NUMBER NOT NULL,
-    factura_iva           NUMBER NOT NULL,
-    cliente_id_empresa    NVARCHAR2(1) NOT NULL,
-    servicio_id_servicio  NVARCHAR2(1) NOT NULL
+                         id_factura            SERIAL PRIMARY KEY,
+                         fecha_factura_emision DATE NOT NULL,
+                         fectura_total_neto    DECIMAL NOT NULL,
+                         factura_total_bruto   DECIMAL NOT NULL,
+                         factura_iva           DECIMAL NOT NULL,
+                         cliente_id_empresa    VARCHAR(255) NOT NULL,
+                         servicio_id_servicio  VARCHAR(255) NOT NULL
 );
 
-ALTER TABLE factura ADD CONSTRAINT factura_pk PRIMARY KEY ( id_factura,
-                                                            cliente_id_empresa );
 
 CREATE TABLE formulario (
-    folio                     NVARCHAR2(1) NOT NULL,
-    ap_paterno                NVARCHAR2(1) NOT NULL,
-    ap_materno                NVARCHAR2(1) NOT NULL,
-    nombres_trabajador        NVARCHAR2(1) NOT NULL,
-    profesion                 NVARCHAR2(1),
-    cargo                     NVARCHAR2(1),
-    edad                      NUMBER NOT NULL,
-    sexo                      NVARCHAR2(1) NOT NULL,
-    anno_antiguedad           NUMBER,
-    fecha_episodio            DATE NOT NULL,
-    hora_episodio             DATE NOT NULL,
-    region                    NVARCHAR2(1),
-    ubicacion_o_faena         NVARCHAR2(1) NOT NULL,
-    area                      NVARCHAR2(1) NOT NULL,
-    ubicacion_exacta          NVARCHAR2(1) NOT NULL,
-    nombre_jefatura           NVARCHAR2(1) NOT NULL,
-    activdad_realizada        NVARCHAR2(1) NOT NULL,
-    lugar_especifico_episodio NVARCHAR2(1) NOT NULL,
-    tipo_episodio             NVARCHAR2(1) NOT NULL,
-    accion_insegura           NVARCHAR2(150) NOT NULL,
-    condicion_insegura        NVARCHAR2(150) NOT NULL,
-    causas                    NVARCHAR2(150) NOT NULL,
-    testigos                  NVARCHAR2(1),
-    cargo_testigo             NVARCHAR2(1),
-    elaborador_informe        NVARCHAR2(1) NOT NULL,
-    cargo_elaborador_informe  NVARCHAR2(1) NOT NULL,
-    fecha_informe             DATE NOT NULL,
-    nombre_revisador          NVARCHAR2(1) NOT NULL,
-    cargo_revisador           NVARCHAR2(1) NOT NULL,
-    fecha_revision            DATE NOT NULL,
-    anexos                    BFILE,
-    episodio_id_episodio      NVARCHAR2(1) NOT NULL
+                            folio                     SERIAL PRIMARY KEY,
+                            ap_paterno                VARCHAR(255) NOT NULL,
+                            ap_materno                VARCHAR(255) NOT NULL,
+                            nombres_trabajador        VARCHAR(255) NOT NULL,
+                            profesion                 VARCHAR(255),
+                            cargo                     VARCHAR(255),
+                            edad                      DECIMAL NOT NULL,
+                            sexo                      VARCHAR(255) NOT NULL,
+                            anno_antiguedad           DECIMAL,
+                            fecha_episodio            DATE NOT NULL,
+                            hora_episodio             DATE NOT NULL,
+                            region                    VARCHAR(255),
+                            ubicacion_o_faena         VARCHAR(255) NOT NULL,
+                            area                      VARCHAR(255) NOT NULL,
+                            ubicacion_exacta          VARCHAR(255) NOT NULL,
+                            nombre_jefatura           VARCHAR(255) NOT NULL,
+                            activdad_realizada        VARCHAR(255) NOT NULL,
+                            lugar_especifico_episodio VARCHAR(255) NOT NULL,
+                            tipo_episodio             VARCHAR(255) NOT NULL,
+                            accion_insegura           VARCHAR(150) NOT NULL,
+                            condicion_insegura        VARCHAR(150) NOT NULL,
+                            causas                    VARCHAR(150) NOT NULL,
+                            testigos                  VARCHAR(255),
+                            cargo_testigo             VARCHAR(255),
+                            elaborador_informe        VARCHAR(255) NOT NULL,
+                            cargo_elaborador_informe  VARCHAR(255) NOT NULL,
+                            fecha_informe             DATE NOT NULL,
+                            nombre_revisador          VARCHAR(255) NOT NULL,
+                            cargo_revisador           VARCHAR(255) NOT NULL,
+                            fecha_revision            DATE NOT NULL,
+                            anexos                    BYTEA,
+                            episodio_id_episodio      VARCHAR(255) NOT NULL
 );
 
-CREATE UNIQUE INDEX formulario__idx ON
-    formulario (
-        episodio_id_episodio
-    ASC );
-
-ALTER TABLE formulario ADD CONSTRAINT formulario_pk PRIMARY KEY ( folio );
 
 CREATE TABLE login (
-    id_login           NVARCHAR2(1) NOT NULL,
-    fecha_login        DATE NOT NULL,
-    fecha_logout       DATE NOT NULL,
-    estado             NVARCHAR2(1) NOT NULL,
-    usuario_id_usuario NVARCHAR2(1) NOT NULL
+                       id_login           SERIAL PRIMARY KEY,
+                       fecha_login        DATE NOT NULL,
+                       fecha_logout       DATE NOT NULL,
+                       estado             VARCHAR(255) NOT NULL,
+                       usuario_id_usuario VARCHAR(255) NOT NULL
 );
 
-ALTER TABLE login ADD CONSTRAINT login_pk PRIMARY KEY ( id_login,
-                                                        usuario_id_usuario );
 
 CREATE TABLE persona (
-    id_persona         NVARCHAR2(1) NOT NULL,
-    run_persona        NVARCHAR2(1) NOT NULL,
-    nombre_persona     NVARCHAR2(1) NOT NULL,
-    fecha_alta         DATE NOT NULL,
-    fecha_baja         DATE,
-    estado_persona     NVARCHAR2(1) NOT NULL,
-    puesto_persona     NVARCHAR2(1) NOT NULL,
-    usuario_id_usuario NVARCHAR2(1) NOT NULL,
-    rol_id_rol         NVARCHAR2(1) NOT NULL
+                         id_persona         SERIAL PRIMARY KEY,
+                         run_persona        VARCHAR(255) NOT NULL,
+                         nombre_persona     VARCHAR(255) NOT NULL,
+                         fecha_alta         DATE NOT NULL,
+                         fecha_baja         DATE,
+                         estado_persona     VARCHAR(255) NOT NULL,
+                         puesto_persona     VARCHAR(255) NOT NULL,
+                         usuario_id_usuario VARCHAR(255) NOT NULL,
+                         rol_id_rol         VARCHAR(255) NOT NULL
 );
-
-CREATE UNIQUE INDEX persona__idx ON
-    persona (
-        usuario_id_usuario
-    ASC );
-
-CREATE UNIQUE INDEX persona__idx ON
-    persona (
-        rol_id_rol
-    ASC );
-
-ALTER TABLE persona ADD CONSTRAINT persona_pk PRIMARY KEY ( run_persona );
 
 CREATE TABLE rol (
-    id_rol              NVARCHAR2(1) NOT NULL,
-    descripcion_rol     NVARCHAR2(1) NOT NULL,
-    usuario_id_usuario  NVARCHAR2(1) NOT NULL,
-    cliente_id_empresa  NVARCHAR2(1) NOT NULL,
-    persona_run_persona NVARCHAR2(1) NOT NULL
+                     id_rol              SERIAL PRIMARY KEY,
+                     descripcion_rol     VARCHAR(255) NOT NULL,
+                     usuario_id_usuario  VARCHAR(255) NOT NULL,
+                     cliente_id_empresa  VARCHAR(255) NOT NULL,
+                     persona_run_persona VARCHAR(255) NOT NULL
 );
-
-CREATE UNIQUE INDEX rol__idx ON
-    rol (
-        usuario_id_usuario
-    ASC );
-
-CREATE UNIQUE INDEX rol__idx ON
-    rol (
-        cliente_id_empresa
-    ASC );
-
-CREATE UNIQUE INDEX rol__idxv1 ON
-    rol (
-        persona_run_persona
-    ASC );
-
-ALTER TABLE rol ADD CONSTRAINT rol_pk PRIMARY KEY ( id_rol );
 
 CREATE TABLE servicio (
-    id_servicio             NVARCHAR2(1) NOT NULL,
-    nombre_servicio         NVARCHAR2(1) NOT NULL,
-    valor_servicio          NUMBER NOT NULL,
-    descripcion_servicio    NVARCHAR2(1),
-    fecha_creacion_servicio DATE NOT NULL,
-    fecha_baja_servicio     DATE,
-    episodio_id_episodio    NVARCHAR2(1) NOT NULL,
-    visita_id_visita        NVARCHAR2(1) NOT NULL
+                          id_servicio             SERIAL PRIMARY KEY,
+                          nombre_servicio         VARCHAR(255) NOT NULL,
+                          valor_servicio          DECIMAL NOT NULL,
+                          descripcion_servicio    VARCHAR(255),
+                          fecha_creacion_servicio DATE NOT NULL,
+                          fecha_baja_servicio     DATE,
+                          episodio_id_episodio    VARCHAR(255) NOT NULL,
+                          visita_id_visita        VARCHAR(255) NOT NULL
 );
 
-ALTER TABLE servicio ADD CONSTRAINT servicio_pk PRIMARY KEY ( id_servicio );
 
 CREATE TABLE usuario (
-    id_usuario          NVARCHAR2(1) NOT NULL,
-    nombre_usuario      NVARCHAR2(1) NOT NULL,
-    contrase�a_usuario  NVARCHAR2(1) NOT NULL,
-    fecha_alta          DATE,
-    cliente_id_empresa  NVARCHAR2(1) NOT NULL,
-    persona_run_persona NVARCHAR2(1) NOT NULL,
-    rol_id_rol          NVARCHAR2(1) NOT NULL
+                         id_usuario          SERIAL PRIMARY KEY,
+                         nombre_usuario      VARCHAR(255) NOT NULL,
+                         contraseña_usuario  VARCHAR(255) NOT NULL,
+                         fecha_alta          DATE,
+                         cliente_id_empresa  VARCHAR(255) NOT NULL,
+                         persona_run_persona VARCHAR(255) NOT NULL,
+                         rol_id_rol          VARCHAR(255) NOT NULL
 );
-
-CREATE UNIQUE INDEX usuario__idx ON
-    usuario (
-        cliente_id_empresa
-    ASC );
-
-CREATE UNIQUE INDEX usuario__idxv1 ON
-    usuario (
-        persona_run_persona
-    ASC );
-
-CREATE UNIQUE INDEX usuario__idxv2 ON
-    usuario (
-        rol_id_rol
-    ASC );
-
-ALTER TABLE usuario ADD CONSTRAINT usuario_pk PRIMARY KEY ( id_usuario );
 
 CREATE TABLE visita (
-    id_visita           NVARCHAR2(1) NOT NULL,
-    fecha_visita        DATE NOT NULL,
-    descripcion_visita  NVARCHAR2(1) NOT NULL,
-    nombre_profesional  NVARCHAR2(1) NOT NULL,
-    estado              NVARCHAR2(1) NOT NULL,
-    persona_run_persona NVARCHAR2(1) NOT NULL
+                        id_visita           SERIAL PRIMARY KEY,
+                        fecha_visita        DATE NOT NULL,
+                        descripcion_visita  VARCHAR(255) NOT NULL,
+                        nombre_profesional  VARCHAR(255) NOT NULL,
+                        estado              VARCHAR(255) NOT NULL,
+                        persona_run_persona VARCHAR(255) NOT NULL
 );
 
-ALTER TABLE visita ADD CONSTRAINT visita_pk PRIMARY KEY ( id_visita );
 
-ALTER TABLE episodio
-    ADD CONSTRAINT episodio_formulario_fk FOREIGN KEY ( formulario_folio )
-        REFERENCES formulario ( folio );
-
-ALTER TABLE factura
-    ADD CONSTRAINT factura_cliente_fk FOREIGN KEY ( cliente_id_empresa )
-        REFERENCES cliente ( id_empresa );
-
-ALTER TABLE factura
-    ADD CONSTRAINT factura_servicio_fk FOREIGN KEY ( servicio_id_servicio )
-        REFERENCES servicio ( id_servicio );
-
-ALTER TABLE formulario
-    ADD CONSTRAINT formulario_episodio_fk FOREIGN KEY ( episodio_id_episodio )
-        REFERENCES episodio ( id_episodio );
-
-ALTER TABLE login
-    ADD CONSTRAINT login_usuario_fk FOREIGN KEY ( usuario_id_usuario )
-        REFERENCES usuario ( id_usuario );
-
-ALTER TABLE servicio
-    ADD CONSTRAINT servicio_episodio_fk FOREIGN KEY ( episodio_id_episodio )
-        REFERENCES episodio ( id_episodio );
-
-ALTER TABLE servicio
-    ADD CONSTRAINT servicio_visita_fk FOREIGN KEY ( visita_id_visita )
-        REFERENCES visita ( id_visita );
-
-ALTER TABLE visita
-    ADD CONSTRAINT visita_persona_fk FOREIGN KEY ( persona_run_persona )
-        REFERENCES persona ( run_persona );
-
-CREATE OR REPLACE TRIGGER fkntm_episodio BEFORE
-    UPDATE OF formulario_folio ON episodio
-BEGIN
-    raise_application_error(-20225, 'Non Transferable FK constraint  on table Episodio is violated');
-END;
-/
-
-CREATE OR REPLACE TRIGGER fkntm_formulario BEFORE
-    UPDATE OF episodio_id_episodio ON formulario
-BEGIN
-    raise_application_error(-20225, 'Non Transferable FK constraint  on table Formulario is violated');
-END;
-/
+--
+--
+-- CREATE TABLE cliente (
+--     id_empresa          VARCHAR(255) NOT NULL,
+--     rut_empresa         VARCHAR(255) NOT NULL,
+--     nombre_empresa      VARCHAR(255),
+--     fono_empresa        VARCHAR(255),
+--     email_empresa       VARCHAR(255) NOT NULL,
+--     responsable_empresa VARCHAR(255),
+--     estado_empresa      CHAR(1) NOT NULL,
+--     usuario_id_usuario  VARCHAR(255) NOT NULL,
+--     rol_id_rol          VARCHAR(255) NOT NULL
+-- );
+--
+-- CREATE UNIQUE INDEX cliente__idx ON
+--     cliente (
+--         usuario_id_usuario
+--     ASC );
+--
+-- CREATE UNIQUE INDEX cliente__idx ON
+--     cliente (
+--         rol_id_rol
+--     ASC );
+--
+-- ALTER TABLE cliente ADD CONSTRAINT cliente_pk PRIMARY KEY ( id_empresa );
+--
+-- CREATE TABLE episodio (
+--     id_episodio      VARCHAR(255) NOT NULL,
+--     fecha_episodio   DATE NOT NULL,
+--     estado           VARCHAR(255) NOT NULL,
+--     formulario_folio VARCHAR(255) NOT NULL
+-- );
+--
+-- CREATE UNIQUE INDEX episodio__idx ON
+--     episodio (
+--         formulario_folio
+--     ASC );
+--
+-- ALTER TABLE episodio ADD CONSTRAINT episodio_pk PRIMARY KEY ( id_episodio );
+--
+-- CREATE TABLE factura (
+--     id_factura            VARCHAR(255) NOT NULL,
+--     fecha_factura_emision DATE NOT NULL,
+--     fectura_total_neto    DECIMAL NOT NULL,
+--     factura_total_bruto   DECIMAL NOT NULL,
+--     factura_iva           DECIMAL NOT NULL,
+--     cliente_id_empresa    VARCHAR(255) NOT NULL,
+--     servicio_id_servicio  VARCHAR(255) NOT NULL
+-- );
+--
+-- ALTER TABLE factura ADD CONSTRAINT factura_pk PRIMARY KEY ( id_factura,
+--                                                             cliente_id_empresa );
+--
+-- CREATE TABLE formulario (
+--     folio                     VARCHAR(255) NOT NULL,
+--     ap_paterno                VARCHAR(255) NOT NULL,
+--     ap_materno                VARCHAR(255) NOT NULL,
+--     nombres_trabajador        VARCHAR(255) NOT NULL,
+--     profesion                 VARCHAR(255),
+--     cargo                     VARCHAR(255),
+--     edad                      DECIMAL NOT NULL,
+--     sexo                      VARCHAR(255) NOT NULL,
+--     anno_antiguedad           DECIMAL,
+--     fecha_episodio            DATE NOT NULL,
+--     hora_episodio             DATE NOT NULL,
+--     region                    VARCHAR(255),
+--     ubicacion_o_faena         VARCHAR(255) NOT NULL,
+--     area                      VARCHAR(255) NOT NULL,
+--     ubicacion_exacta          VARCHAR(255) NOT NULL,
+--     nombre_jefatura           VARCHAR(255) NOT NULL,
+--     activdad_realizada        VARCHAR(255) NOT NULL,
+--     lugar_especifico_episodio VARCHAR(255) NOT NULL,
+--     tipo_episodio             VARCHAR(255) NOT NULL,
+--     accion_insegura           VARCHAR(150) NOT NULL,
+--     condicion_insegura        VARCHAR(150) NOT NULL,
+--     causas                    VARCHAR(150) NOT NULL,
+--     testigos                  VARCHAR(255),
+--     cargo_testigo             VARCHAR(255),
+--     elaborador_informe        VARCHAR(255) NOT NULL,
+--     cargo_elaborador_informe  VARCHAR(255) NOT NULL,
+--     fecha_informe             DATE NOT NULL,
+--     nombre_revisador          VARCHAR(255) NOT NULL,
+--     cargo_revisador           VARCHAR(255) NOT NULL,
+--     fecha_revision            DATE NOT NULL,
+--     anexos                    BFILE,
+--     episodio_id_episodio      VARCHAR(255) NOT NULL
+-- );
+--
+-- CREATE UNIQUE INDEX formulario__idx ON
+--     formulario (
+--         episodio_id_episodio
+--     ASC );
+--
+-- ALTER TABLE formulario ADD CONSTRAINT formulario_pk PRIMARY KEY ( folio );
+--
+-- CREATE TABLE login (
+--     id_login           VARCHAR(255) NOT NULL,
+--     fecha_login        DATE NOT NULL,
+--     fecha_logout       DATE NOT NULL,
+--     estado             VARCHAR(255) NOT NULL,
+--     usuario_id_usuario VARCHAR(255) NOT NULL
+-- );
+--
+-- ALTER TABLE login ADD CONSTRAINT login_pk PRIMARY KEY ( id_login,
+--                                                         usuario_id_usuario );
+--
+-- CREATE TABLE persona (
+--     id_persona         VARCHAR(255) NOT NULL,
+--     run_persona        VARCHAR(255) NOT NULL,
+--     nombre_persona     VARCHAR(255) NOT NULL,
+--     fecha_alta         DATE NOT NULL,
+--     fecha_baja         DATE,
+--     estado_persona     VARCHAR(255) NOT NULL,
+--     puesto_persona     VARCHAR(255) NOT NULL,
+--     usuario_id_usuario VARCHAR(255) NOT NULL,
+--     rol_id_rol         VARCHAR(255) NOT NULL
+-- );
+--
+-- CREATE UNIQUE INDEX persona__idx ON
+--     persona (
+--         usuario_id_usuario
+--     ASC );
+--
+-- CREATE UNIQUE INDEX persona__idx ON
+--     persona (
+--         rol_id_rol
+--     ASC );
+--
+-- ALTER TABLE persona ADD CONSTRAINT persona_pk PRIMARY KEY ( run_persona );
+--
+-- CREATE TABLE rol (
+--     id_rol              VARCHAR(255) NOT NULL,
+--     descripcion_rol     VARCHAR(255) NOT NULL,
+--     usuario_id_usuario  VARCHAR(255) NOT NULL,
+--     cliente_id_empresa  VARCHAR(255) NOT NULL,
+--     persona_run_persona VARCHAR(255) NOT NULL
+-- );
+--
+-- CREATE UNIQUE INDEX rol__idx ON
+--     rol (
+--         usuario_id_usuario
+--     ASC );
+--
+-- CREATE UNIQUE INDEX rol__idx ON
+--     rol (
+--         cliente_id_empresa
+--     ASC );
+--
+-- CREATE UNIQUE INDEX rol__idxv1 ON
+--     rol (
+--         persona_run_persona
+--     ASC );
+--
+-- ALTER TABLE rol ADD CONSTRAINT rol_pk PRIMARY KEY ( id_rol );
+--
+-- CREATE TABLE servicio (
+--     id_servicio             VARCHAR(255) NOT NULL,
+--     nombre_servicio         VARCHAR(255) NOT NULL,
+--     valor_servicio          DECIMAL NOT NULL,
+--     descripcion_servicio    VARCHAR(255),
+--     fecha_creacion_servicio DATE NOT NULL,
+--     fecha_baja_servicio     DATE,
+--     episodio_id_episodio    VARCHAR(255) NOT NULL,
+--     visita_id_visita        VARCHAR(255) NOT NULL
+-- );
+--
+-- ALTER TABLE servicio ADD CONSTRAINT servicio_pk PRIMARY KEY ( id_servicio );
+--
+-- CREATE TABLE usuario (
+--     id_usuario          VARCHAR(255) NOT NULL,
+--     nombre_usuario      VARCHAR(255) NOT NULL,
+--     contraseña_usuario  VARCHAR(255) NOT NULL,
+--     fecha_alta          DATE,
+--     cliente_id_empresa  VARCHAR(255) NOT NULL,
+--     persona_run_persona VARCHAR(255) NOT NULL,
+--     rol_id_rol          VARCHAR(255) NOT NULL
+-- );
+--
+-- CREATE UNIQUE INDEX usuario__idx ON
+--     usuario (
+--         cliente_id_empresa
+--     ASC );
+--
+-- CREATE UNIQUE INDEX usuario__idxv1 ON
+--     usuario (
+--         persona_run_persona
+--     ASC );
+--
+-- CREATE UNIQUE INDEX usuario__idxv2 ON
+--     usuario (
+--         rol_id_rol
+--     ASC );
+--
+-- ALTER TABLE usuario ADD CONSTRAINT usuario_pk PRIMARY KEY ( id_usuario );
+--
+-- CREATE TABLE visita (
+--     id_visita           VARCHAR(255) NOT NULL,
+--     fecha_visita        DATE NOT NULL,
+--     descripcion_visita  VARCHAR(255) NOT NULL,
+--     nombre_profesional  VARCHAR(255) NOT NULL,
+--     estado              VARCHAR(255) NOT NULL,
+--     persona_run_persona VARCHAR(255) NOT NULL
+-- );
+--
+-- ALTER TABLE visita ADD CONSTRAINT visita_pk PRIMARY KEY ( id_visita );
+--
+-- ALTER TABLE episodio
+--     ADD CONSTRAINT episodio_formulario_fk FOREIGN KEY ( formulario_folio )
+--         REFERENCES formulario ( folio );
+--
+-- ALTER TABLE factura
+--     ADD CONSTRAINT factura_cliente_fk FOREIGN KEY ( cliente_id_empresa )
+--         REFERENCES cliente ( id_empresa );
+--
+-- ALTER TABLE factura
+--     ADD CONSTRAINT factura_servicio_fk FOREIGN KEY ( servicio_id_servicio )
+--         REFERENCES servicio ( id_servicio );
+--
+-- ALTER TABLE formulario
+--     ADD CONSTRAINT formulario_episodio_fk FOREIGN KEY ( episodio_id_episodio )
+--         REFERENCES episodio ( id_episodio );
+--
+-- ALTER TABLE login
+--     ADD CONSTRAINT login_usuario_fk FOREIGN KEY ( usuario_id_usuario )
+--         REFERENCES usuario ( id_usuario );
+--
+-- ALTER TABLE servicio
+--     ADD CONSTRAINT servicio_episodio_fk FOREIGN KEY ( episodio_id_episodio )
+--         REFERENCES episodio ( id_episodio );
+--
+-- ALTER TABLE servicio
+--     ADD CONSTRAINT servicio_visita_fk FOREIGN KEY ( visita_id_visita )
+--         REFERENCES visita ( id_visita );
+--
+-- ALTER TABLE visita
+--     ADD CONSTRAINT visita_persona_fk FOREIGN KEY ( persona_run_persona )
+--         REFERENCES persona ( run_persona );
+--
+-- CREATE OR REPLACE TRIGGER fkntm_episodio BEFORE
+--     UPDATE OF formulario_folio ON episodio
+-- BEGIN
+--     raise_application_error(-20225, 'Non Transferable FK constraint  on table Episodio is violated');
+-- END;
+-- /
+--
+-- CREATE OR REPLACE TRIGGER fkntm_formulario BEFORE
+--     UPDATE OF episodio_id_episodio ON formulario
+-- BEGIN
+--     raise_application_error(-20225, 'Non Transferable FK constraint  on table Formulario is violated');
+-- END;
+-- /
 
 
 

@@ -36,7 +36,7 @@ public class EmployeeRegisterServiceImpl implements EmployeeRegisterService {
     @Override
     public EmployeeRegisterResponse find(@NotNull EmployeeRegisterRequest employeeRegisterRequest) {
         EmployeeRegisterResponse response = new EmployeeRegisterResponse();
-        PersonaEntity find = personaRepository.findByIdUsuario(employeeRegisterRequest.getEmployees().get(0).getIdUsuario());
+        PersonaEntity find = personaRepository.findByIdUsuario(employeeRegisterRequest.getEmployees().get(0).getIdPersona());
         response.setOperation("Encontrar");
         if(find == null) {
             response.setStatus("Error");
@@ -78,7 +78,7 @@ public class EmployeeRegisterServiceImpl implements EmployeeRegisterService {
         EmployeeRegisterResponse response = new EmployeeRegisterResponse();
         response.setOperation("Borrar");
         try {
-            personaRepository.deleteByIdUsuario(employeeRegisterRequest.getEmployees().get(0).getIdUsuario());
+            personaRepository.deleteByIdUsuario(employeeRegisterRequest.getEmployees().get(0).getIdPersona());
         } catch (Exception e) {
             response.setStatus("Error");
             throw new RuntimeException(e);

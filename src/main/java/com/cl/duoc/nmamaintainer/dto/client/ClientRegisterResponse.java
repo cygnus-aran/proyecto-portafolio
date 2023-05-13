@@ -1,6 +1,6 @@
 package com.cl.duoc.nmamaintainer.dto.client;
 
-import com.cl.duoc.nmamaintainer.entity.EmpresaClienteEntity;
+import com.cl.duoc.nmamaintainer.entity.ClienteEntity;
 
 import java.util.List;
 
@@ -8,12 +8,12 @@ public class ClientRegisterResponse {
 
     private String operation;
     private String status;
-    private List<EmpresaClienteEntity> clientes;
+    private List<ClienteEntity> clientes;
 
     public ClientRegisterResponse() {
     }
 
-    public ClientRegisterResponse(String operation, String status, List<EmpresaClienteEntity> clientes) {
+    public ClientRegisterResponse(String operation, String status, List<ClienteEntity> clientes) {
         this.operation = operation;
         this.status = status;
         this.clientes = clientes;
@@ -35,11 +35,11 @@ public class ClientRegisterResponse {
         this.status = status;
     }
 
-    public List<EmpresaClienteEntity> getClientes() {
+    public List<ClienteEntity> getClientes() {
         return clientes;
     }
 
-    public void setClientes(List<EmpresaClienteEntity> clientes) {
+    public void setClientes(List<ClienteEntity> clientes) {
         this.clientes = clientes;
     }
 }

@@ -2,11 +2,17 @@ package com.cl.duoc.nmamaintainer.service.login.impl;
 
 import com.cl.duoc.nmamaintainer.dto.login.LoginRequest;
 import com.cl.duoc.nmamaintainer.dto.login.LoginResponse;
+import com.cl.duoc.nmamaintainer.entity.LoginEntity;
 import com.cl.duoc.nmamaintainer.entity.PersonaEntity;
+import com.cl.duoc.nmamaintainer.entity.UsuarioEntity;
 import com.cl.duoc.nmamaintainer.repository.LoginRepository;
+import com.cl.duoc.nmamaintainer.repository.UsuarioRepository;
 import com.cl.duoc.nmamaintainer.service.login.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 
 
@@ -15,17 +21,31 @@ public class LoginServiceImpl implements LoginService {
 
     @Autowired
     LoginRepository loginRepository;
+
+    @Autowired
+    UsuarioRepository usuarioRepository;
+
     @Override
     public LoginResponse validate(LoginRequest loginRequest) {
         LoginResponse response = new LoginResponse();
-        PersonaEntity login = loginRepository.findByPasswordAndRutPersona(loginRequest.getPassword(),
-                Integer.parseInt(loginRequest.getUser()));
+        UsuarioEntity login = usuarioRepository.findByNombreUsuarioAndContraseñaUsuario(loginRequest.getUser(),
+                loginRequest.getPassword());
         if(login == null) {
             response.setRol("");
             response.setMessage("Usuario o Contraseña Inválido");
             return response;
         }
-        response.setRol(String.valueOf(login.getIdRol()));
+        LoginEntity le = new LoginEntity();
+        le.setEstado("A");
+        le.setFechaLogin(LocalDate.now());
+        le.setFechaLogout(LocalDate.MIN);
+        le.setUsuarioIdUsuario(login.getIdUsuario().toString());
+        try {
+            loginRepository.save(le);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        response.setRol(String.valueOf(login.getRolIdRol()));
         response.setMessage("Login Exitoso");
         return response;
     }

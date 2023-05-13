@@ -9,8 +9,8 @@ import java.util.List;
 public interface PersonaRepository extends JpaRepository<PersonaEntity, String> {
 
     PersonaEntity save(PersonaEntity persona);
-    PersonaEntity findByIdUsuario(String idUsuario);
+    PersonaEntity findByIdUsuario(int idUsuario);
     List<PersonaEntity> findAll();
     PersonaEntity saveAndFlush(PersonaEntity persona);
-    void deleteByIdUsuario(String idUsuario);
+    void deleteByIdUsuario(int idUsuario);
 }

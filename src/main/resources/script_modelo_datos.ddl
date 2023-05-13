@@ -17,7 +17,7 @@ CREATE TABLE empresa_cliente (
     email_empresa       VARCHAR2(100) NOT NULL,
     responsable_empresa VARCHAR2(100) NOT NULL,
     estado_empresa      CHAR(1) NOT NULL,
-    usuarios_id_usuario NUMBER NOT NULL
+    usuarios_id_usuario DECIMAL NOT NULL
 );
 
 CREATE UNIQUE INDEX empresa_cliente__idx ON
@@ -104,7 +104,7 @@ CREATE TABLE servicios (
 ALTER TABLE servicios ADD CONSTRAINT servicios_pk PRIMARY KEY ( id_servicio );
 
 CREATE TABLE usuarios (
-    id_usuario          NUMBER NOT NULL,
+    id_usuario          DECIMAL NOT NULL,
     nombre_usuario      VARCHAR2(50) NOT NULL,
     contrasena_usuario  VARCHAR2(50) NOT NULL,
     id_rol              INTEGER NOT NULL,
