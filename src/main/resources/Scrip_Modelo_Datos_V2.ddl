@@ -18,6 +18,9 @@
 --
 -- ALTER USER NMA_ADMIN DEFAULT TABLESPACE NMA1;
 
+--DOCKER POSTGRES
+--https://bitbucket.org/multicaja-cloud/ms-multicaja-semilla/src/master/
+
 --POSTGRES
 CREATE SCHEMA nma;
 CREATE USER nma_admin WITH PASSWORD 'admin';
