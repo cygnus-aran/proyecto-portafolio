@@ -4,8 +4,6 @@ package com.cl.duoc.nmamaintainer.controller;
 import com.cl.duoc.nmamaintainer.dto.Response;
 import com.cl.duoc.nmamaintainer.dto.client.ClientRegisterRequest;
 import com.cl.duoc.nmamaintainer.dto.client.ClientRegisterResponse;
-import com.cl.duoc.nmamaintainer.dto.employee.EmployeeRegisterRequest;
-import com.cl.duoc.nmamaintainer.dto.employee.EmployeeRegisterResponse;
 import com.cl.duoc.nmamaintainer.service.client.ClientRegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
