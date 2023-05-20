@@ -28,10 +28,10 @@ public class ServicioEntity {
     @Column(name = "fecha_baja_servicio")
     private java.sql.Date fechaBajaServicio;
 
-    @Column(name = "episodio_id_episodio", nullable = false)
+    @Column(name = "id_cliente", nullable = false)
     private String episodioIdEpisodio;
 
-    @Column(name = "visita_id_visita", nullable = false)
+    @Column(name = "id_persona", nullable = false)
     private String visitaIdVisita;
 
     public Integer getIdServicio() {

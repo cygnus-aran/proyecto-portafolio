@@ -1,40 +1,39 @@
-package com.cl.duoc.nmamaintainer.entity;
+package com.cl.duoc.nmamaintainer.dto.persona;
 
-import jakarta.persistence.*;
+public class PersonaIn {
 
-import java.time.LocalDate;
-
-@Entity
-@Table(name = "persona", schema = "nma")
-public class PersonaEntity {
-
-    @Id
-    @Column(name = "id")
     private Integer idPersona;
 
-    @Column(name = "run_persona")
     private String runPersona;
 
-    @Column(name = "nombre_persona")
     private String nombrePersona;
 
-    @Column(name = "fecha_alta")
-    private LocalDate fechaAlta;
+    private String fechaAlta;
 
-    @Column(name = "fecha_baja")
-    private LocalDate fechaBaja;
+    private String fechaBaja;
 
-    @Column(name = "estado_persona")
     private String estadoPersona;
 
-    @Column(name = "puesto_persona")
     private String puestoPersona;
 
-    @Column(name = "usuario_id_usuario")
     private String usuarioIdUsuario;
 
-    @Column(name = "rol_id_rol")
     private String rolIdRol;
+
+    public PersonaIn() {
+    }
+
+    public PersonaIn(Integer idPersona, String runPersona, String nombrePersona, String fechaAlta, String fechaBaja, String estadoPersona, String puestoPersona, String usuarioIdUsuario, String rolIdRol) {
+        this.idPersona = idPersona;
+        this.runPersona = runPersona;
+        this.nombrePersona = nombrePersona;
+        this.fechaAlta = fechaAlta;
+        this.fechaBaja = fechaBaja;
+        this.estadoPersona = estadoPersona;
+        this.puestoPersona = puestoPersona;
+        this.usuarioIdUsuario = usuarioIdUsuario;
+        this.rolIdRol = rolIdRol;
+    }
 
     public Integer getIdPersona() {
         return idPersona;
@@ -60,19 +59,19 @@ public class PersonaEntity {
         this.nombrePersona = nombrePersona;
     }
 
-    public LocalDate getFechaAlta() {
+    public String getFechaAlta() {
         return fechaAlta;
     }
 
-    public void setFechaAlta(LocalDate fechaAlta) {
+    public void setFechaAlta(String fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
 
-    public LocalDate getFechaBaja() {
+    public String getFechaBaja() {
         return fechaBaja;
     }
 
-    public void setFechaBaja(LocalDate fechaBaja) {
+    public void setFechaBaja(String fechaBaja) {
         this.fechaBaja = fechaBaja;
     }
 

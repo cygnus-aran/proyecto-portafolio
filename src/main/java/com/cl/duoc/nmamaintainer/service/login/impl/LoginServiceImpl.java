@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Random;
 
 
 @Service
@@ -38,8 +39,9 @@ public class LoginServiceImpl implements LoginService {
         LoginEntity le = new LoginEntity();
         le.setEstado("A");
         le.setFechaLogin(LocalDate.now());
-        le.setFechaLogout(LocalDate.MIN);
+        le.setFechaLogout(LocalDate.of(1900, 1,1));
         le.setUsuarioIdUsuario(login.getIdUsuario().toString());
+        le.setIdLogin(new Random().nextInt(101));
         try {
             loginRepository.save(le);
         } catch (Exception e) {

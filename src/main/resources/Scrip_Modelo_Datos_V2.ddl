@@ -35,7 +35,7 @@ CREATE TABLE cliente (
                          fono_empresa        VARCHAR(255),
                          email_empresa       VARCHAR(255) NOT NULL,
                          responsable_empresa VARCHAR(255),
-                         estado_empresa      CHAR(1) NOT NULL,
+                         estado_empresa      VARCHAR(255) NOT NULL,
                          usuario_id_usuario  VARCHAR(255) NOT NULL,
                          rol_id_rol          VARCHAR(255) NOT NULL
 );
@@ -92,7 +92,7 @@ CREATE TABLE formulario (
                             cargo_revisador           VARCHAR(255) NOT NULL,
                             fecha_revision            DATE NOT NULL,
                             anexos                    BYTEA,
-                            episodio_id_episodio      VARCHAR(255) NOT NULL
+                            id_cliente                VARCHAR(255) NOT NULL
 );
 
 
@@ -132,8 +132,8 @@ CREATE TABLE servicio (
                           descripcion_servicio    VARCHAR(255),
                           fecha_creacion_servicio DATE NOT NULL,
                           fecha_baja_servicio     DATE,
-                          episodio_id_episodio    VARCHAR(255) NOT NULL,
-                          visita_id_visita        VARCHAR(255) NOT NULL
+                          id_persona              VARCHAR(255) NOT NULL,
+                          id_cliente              VARCHAR(255) NOT NULL
 );
 
 
@@ -153,7 +153,15 @@ CREATE TABLE visita (
                         descripcion_visita  VARCHAR(255) NOT NULL,
                         nombre_profesional  VARCHAR(255) NOT NULL,
                         estado              VARCHAR(255) NOT NULL,
-                        persona_run_persona VARCHAR(255) NOT NULL
+                        persona_run_persona VARCHAR(255) NOT NULL,
+                        id_empresa          VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE contrato (
+                        id_contrato         SERIAL PRIMARY KEY,
+                        fecha_contrato      DATE NOT NULL,
+                        estado_contrato     VARCHAR(255) NOT NULL,
+                        id_cliente_contrato VARCHAR(255) NOT NULL
 );
 
 

@@ -78,10 +78,10 @@ public class ClientController {
 
         clientRegisterResponse = clientRegisterService.delete(clientRegisterRequest);
 
-        Response<ClientRegisterResponse> response = new Response<>(HttpStatus.FOUND.value(),
+        Response<ClientRegisterResponse> response = new Response<>(HttpStatus.OK.value(),
                 "Registro Eliminado", clientRegisterResponse);
 
-        return new ResponseEntity<>(response, HttpStatus.FOUND);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 }

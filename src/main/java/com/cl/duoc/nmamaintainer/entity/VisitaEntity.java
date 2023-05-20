@@ -29,6 +29,9 @@ public class VisitaEntity {
     @Column(name = "persona_run_persona", nullable = false)
     private String personaRunPersona;
 
+    @Column(name = "id_empresa", nullable = false)
+    private String idEmpresa;
+
     public Integer getIdVisita() {
         return idVisita;
     }
@@ -75,5 +78,13 @@ public class VisitaEntity {
 
     public void setPersonaRunPersona(String personaRunPersona) {
         this.personaRunPersona = personaRunPersona;
+    }
+
+    public String getIdEmpresa() {
+        return idEmpresa;
+    }
+
+    public void setIdEmpresa(String idEmpresa) {
+        this.idEmpresa = idEmpresa;
     }
 }

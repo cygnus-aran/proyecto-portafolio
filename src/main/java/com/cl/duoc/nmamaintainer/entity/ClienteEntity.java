@@ -29,7 +29,7 @@ public class ClienteEntity {
     private String responsableEmpresa;
 
     @Column(name = "estado_empresa", nullable = false)
-    private Character estadoEmpresa;
+    private String estadoEmpresa;
 
     @Column(name = "usuario_id_usuario", nullable = false)
     private String usuarioIdUsuario;
@@ -93,11 +93,11 @@ public class ClienteEntity {
         this.responsableEmpresa = responsableEmpresa;
     }
 
-    public Character getEstadoEmpresa() {
+    public String getEstadoEmpresa() {
         return estadoEmpresa;
     }
 
-    public void setEstadoEmpresa(Character estadoEmpresa) {
+    public void setEstadoEmpresa(String estadoEmpresa) {
         this.estadoEmpresa = estadoEmpresa;
     }
 

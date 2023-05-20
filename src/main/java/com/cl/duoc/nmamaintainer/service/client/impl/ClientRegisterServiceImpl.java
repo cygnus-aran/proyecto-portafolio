@@ -77,7 +77,7 @@ public class ClientRegisterServiceImpl implements ClientRegisterService {
         ClientRegisterResponse response = new ClientRegisterResponse();
         response.setOperation("Borrar");
         try {
-            clienteRepository.deleteById(clientRegisterRequest.getClients().get(0).getId());
+            clienteRepository.deleteByIdEmpresa(clientRegisterRequest.getClients().get(0).getIdEmpresa());
         } catch (Exception e) {
             response.setStatus("Error");
             throw new RuntimeException(e);

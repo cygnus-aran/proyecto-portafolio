@@ -1,14 +1,19 @@
 package com.cl.duoc.nmamaintainer.service.persona.impl;
 
+import com.cl.duoc.nmamaintainer.dto.persona.PersonaIn;
 import com.cl.duoc.nmamaintainer.dto.persona.PersonaRequest;
 import com.cl.duoc.nmamaintainer.dto.persona.PersonaResponse;
+import com.cl.duoc.nmamaintainer.dto.persona.PersonaSaveRequest;
 import com.cl.duoc.nmamaintainer.entity.PersonaEntity;
 import com.cl.duoc.nmamaintainer.repository.PersonaRepository;
 import com.cl.duoc.nmamaintainer.service.persona.PersonaService;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -21,9 +26,15 @@ public class PersonaServiceImpl implements PersonaService {
     PersonaRepository personaRepository;
 
     @Override
-    public PersonaResponse register(PersonaRequest personaRequest) {
+    public PersonaResponse register(PersonaSaveRequest personaRequest) {
         PersonaResponse response = new PersonaResponse();
-        PersonaEntity save = personaRepository.save(personaRequest.getPersonas().get(0));
+        PersonaEntity ent = new PersonaEntity();
+        BeanUtils.copyProperties(personaRequest.getPersonas().get(0), ent);
+        ent.setFechaAlta(Instant.ofEpochMilli(Long.parseLong(personaRequest.getPersonas().get(0).getFechaAlta())).
+                atZone(ZoneId.systemDefault()).toLocalDate());
+        ent.setFechaBaja(Instant.ofEpochMilli(Long.parseLong(personaRequest.getPersonas().get(0).getFechaBaja())).
+                atZone(ZoneId.systemDefault()).toLocalDate());
+        PersonaEntity save = personaRepository.save(ent);
         response.setOperation("Guardado");
         if (save == null) {
             response.setStatus("Error");
@@ -79,7 +90,7 @@ public class PersonaServiceImpl implements PersonaService {
         PersonaResponse response = new PersonaResponse();
         response.setOperation("Borrar");
         try {
-            personaRepository.deleteById(personaRequest.getPersonas().get(0).getIdPersona().toString());
+            personaRepository.deleteByIdPersona(personaRequest.getPersonas().get(0).getIdPersona());
         } catch (Exception e) {
             response.setStatus("Error");
             throw new RuntimeException(e);

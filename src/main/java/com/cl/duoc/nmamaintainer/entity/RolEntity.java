@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 public class RolEntity {
 
     @Id
-    @Column(name = "id_rol")
+    @Column(name = "id")
     private int idRol;
 
     @Column(name = "descripcion_rol", nullable = false)

@@ -104,7 +104,7 @@ public class FormularioEntity {
     @Column(name = "anexos")
     private byte[] anexos;
 
-    @Column(name = "episodio_id_episodio", nullable = false)
+    @Column(name = "id_cliente", nullable = false)
     private String episodioIdEpisodio;
 
     public Integer getFolio() {

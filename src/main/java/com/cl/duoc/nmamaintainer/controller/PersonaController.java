@@ -3,6 +3,7 @@ package com.cl.duoc.nmamaintainer.controller;
 import com.cl.duoc.nmamaintainer.dto.Response;
 import com.cl.duoc.nmamaintainer.dto.persona.PersonaRequest;
 import com.cl.duoc.nmamaintainer.dto.persona.PersonaResponse;
+import com.cl.duoc.nmamaintainer.dto.persona.PersonaSaveRequest;
 import com.cl.duoc.nmamaintainer.service.persona.PersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +24,7 @@ public class PersonaController {
     }
 
     @PostMapping("/register-persona")
-    public ResponseEntity<Response<PersonaResponse>> postRegisterPersona(@RequestBody PersonaRequest personaRequest) {
+    public ResponseEntity<Response<PersonaResponse>> postRegisterPersona(@RequestBody PersonaSaveRequest personaRequest) {
         PersonaResponse personaResponse = personaService.register(personaRequest);
         Response<PersonaResponse> response = new Response<>(HttpStatus.CREATED.value(), "Registro Creado", personaResponse);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
@@ -46,7 +47,7 @@ public class PersonaController {
     @PostMapping("/delete-persona")
     public ResponseEntity<Response<PersonaResponse>> postDeletePersona(@RequestBody PersonaRequest personaRequest) {
         PersonaResponse personaResponse = personaService.delete(personaRequest);
-        Response<PersonaResponse> response = new Response<>(HttpStatus.FOUND.value(), "Registro Eliminado", personaResponse);
-        return new ResponseEntity<>(response, HttpStatus.FOUND);
+        Response<PersonaResponse> response = new Response<>(HttpStatus.OK.value(), "Registro Eliminado", personaResponse);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

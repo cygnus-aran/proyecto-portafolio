@@ -28,7 +28,7 @@ public class LoginController {
         if(loginResponse.getRol().length() == 0) {
             response = new Response<>(HttpStatus.UNAUTHORIZED.value(), "Usuario Inválido", loginResponse);
         } else {
-            response = new Response<>(HttpStatus.ACCEPTED.value(), "Consulta Exitosa", loginResponse);
+            response = new Response<>(HttpStatus.ACCEPTED.value(), "Bienvenido!", loginResponse);
         }
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
