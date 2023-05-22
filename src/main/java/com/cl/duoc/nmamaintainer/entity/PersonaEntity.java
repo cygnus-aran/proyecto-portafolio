@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class PersonaEntity {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id_persona")
     private Integer idPersona;
 
     @Column(name = "run_persona")

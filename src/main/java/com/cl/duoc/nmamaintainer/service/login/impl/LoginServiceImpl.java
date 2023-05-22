@@ -41,7 +41,6 @@ public class LoginServiceImpl implements LoginService {
         le.setFechaLogin(LocalDate.now());
         le.setFechaLogout(LocalDate.of(1900, 1,1));
         le.setUsuarioIdUsuario(login.getIdUsuario().toString());
-        le.setIdLogin(new Random().nextInt(101));
         try {
             loginRepository.save(le);
         } catch (Exception e) {

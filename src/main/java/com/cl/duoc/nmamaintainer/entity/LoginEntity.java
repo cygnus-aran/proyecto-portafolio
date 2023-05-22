@@ -11,7 +11,7 @@ public class LoginEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id_login")
     private Integer id;
 
     @Column(name = "fecha_login", nullable = false)
@@ -25,9 +25,6 @@ public class LoginEntity {
 
     @Column(name = "usuario_id_usuario", nullable = false)
     private String usuarioIdUsuario;
-
-    @Column(name =  "id_login")
-    private  Integer idLogin;
 
     public Integer getId() {
         return id;
@@ -69,12 +66,5 @@ public class LoginEntity {
         this.usuarioIdUsuario = usuarioIdUsuario;
     }
 
-    public Integer getIdLogin() {
-        return idLogin;
-    }
-
-    public void setIdLogin(Integer idLogin) {
-        this.idLogin = idLogin;
-    }
 }
 

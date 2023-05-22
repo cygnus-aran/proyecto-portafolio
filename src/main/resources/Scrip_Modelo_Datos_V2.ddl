@@ -25,7 +25,7 @@
 CREATE SCHEMA nma;
 CREATE USER nma_admin WITH PASSWORD 'admin';
 GRANT ALL PRIVILEGES ON SCHEMA nma TO nma_admin;
-ALTER ROLE nma_admin SET search_path TO nma,public;
+ALTER ROLE nma_admin SET search_path TO nma;
 
 CREATE TABLE cliente (
                          id SERIAL PRIMARY KEY,
