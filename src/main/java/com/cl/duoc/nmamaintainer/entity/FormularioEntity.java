@@ -88,8 +88,8 @@ public class FormularioEntity {
     @Column(name = "cargo_elaborador_informe", nullable = false)
     private String cargoElaboradorInforme;
 
-    @Column(name = "fecha_informe", nullable = false)
-    private Date fechaInforme;
+    @Column(name = "telefono_elaborador_informe", nullable = false)
+    private Date telefonoElaboradorInforme;
 
     @Column(name = "nombre_revisador", nullable = false)
     private String nombreRevisador;
@@ -105,7 +105,10 @@ public class FormularioEntity {
     private byte[] anexos;
 
     @Column(name = "id_cliente", nullable = false)
-    private String episodioIdEpisodio;
+    private String idCliente;
+
+    @Column(name = "rut_trabajador", nullable = false)
+    private String rutTrabajador;
 
     public Integer getFolio() {
         return folio;
@@ -315,12 +318,12 @@ public class FormularioEntity {
         this.cargoElaboradorInforme = cargoElaboradorInforme;
     }
 
-    public Date getFechaInforme() {
-        return fechaInforme;
+    public Date getTelefonoElaboradorInforme() {
+        return telefonoElaboradorInforme;
     }
 
-    public void setFechaInforme(Date fechaInforme) {
-        this.fechaInforme = fechaInforme;
+    public void setTelefonoElaboradorInforme(Date telefonoElaboradorInforme) {
+        this.telefonoElaboradorInforme = telefonoElaboradorInforme;
     }
 
     public String getNombreRevisador() {
@@ -355,11 +358,19 @@ public class FormularioEntity {
         this.anexos = anexos;
     }
 
-    public String getEpisodioIdEpisodio() {
-        return episodioIdEpisodio;
+    public String getIdCliente() {
+        return idCliente;
     }
 
-    public void setEpisodioIdEpisodio(String episodioIdEpisodio) {
-        this.episodioIdEpisodio = episodioIdEpisodio;
+    public void setIdCliente(String idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public String getRutTrabajador() {
+        return rutTrabajador;
+    }
+
+    public void setRutTrabajador(String rutTrabajador) {
+        this.rutTrabajador = rutTrabajador;
     }
 }

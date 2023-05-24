@@ -4,12 +4,15 @@ public class LoginResponse {
     private String message;
     private String rol;
 
+    private String idUsuario;
+
     public LoginResponse() {
     }
 
-    public LoginResponse(String message, String rol) {
+    public LoginResponse(String message, String rol, String idUsuario) {
         this.message = message;
         this.rol = rol;
+        this.idUsuario = idUsuario;
     }
 
     public String getMessage() {
@@ -26,5 +29,13 @@ public class LoginResponse {
 
     public void setRol(String rol) {
         this.rol = rol;
+    }
+
+    public String getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }

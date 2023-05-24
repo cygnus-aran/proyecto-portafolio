@@ -92,7 +92,8 @@ CREATE TABLE formulario (
                             cargo_revisador           VARCHAR(255) NOT NULL,
                             fecha_revision            DATE NOT NULL,
                             anexos                    BYTEA,
-                            id_cliente                VARCHAR(255) NOT NULL
+                            id_cliente                VARCHAR(255) NOT NULL,
+                            rut_trabajador            VARCHAR(255) NOT NULL
 );
 
 
@@ -133,7 +134,8 @@ CREATE TABLE servicio (
                           fecha_creacion_servicio DATE NOT NULL,
                           fecha_baja_servicio     DATE,
                           id_persona              VARCHAR(255) NOT NULL,
-                          id_cliente              VARCHAR(255) NOT NULL
+                          id_cliente              VARCHAR(255) NOT NULL,
+                          estado_servicio         VARCHAR(255) NOT NULL
 );
 
 
@@ -154,7 +156,8 @@ CREATE TABLE visita (
                         nombre_profesional  VARCHAR(255) NOT NULL,
                         estado              VARCHAR(255) NOT NULL,
                         persona_run_persona VARCHAR(255) NOT NULL,
-                        id_empresa          VARCHAR(255) NOT NULL
+                        id_empresa          VARCHAR(255) NOT NULL,
+                        valor               VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE contrato (

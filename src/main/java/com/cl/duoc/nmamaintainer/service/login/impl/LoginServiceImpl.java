@@ -34,6 +34,7 @@ public class LoginServiceImpl implements LoginService {
         if(login == null) {
             response.setRol("");
             response.setMessage("Usuario o Contraseña Inválido");
+            response.setIdUsuario("");
             return response;
         }
         LoginEntity le = new LoginEntity();
@@ -46,6 +47,7 @@ public class LoginServiceImpl implements LoginService {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        response.setIdUsuario(String.valueOf(login.getIdUsuario()));
         response.setRol(String.valueOf(login.getRolIdRol()));
         response.setMessage("Login Exitoso");
         return response;

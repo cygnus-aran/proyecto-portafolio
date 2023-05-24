@@ -29,10 +29,13 @@ public class ServicioEntity {
     private java.sql.Date fechaBajaServicio;
 
     @Column(name = "id_cliente", nullable = false)
-    private String episodioIdEpisodio;
+    private String idCliente;
 
     @Column(name = "id_persona", nullable = false)
-    private String visitaIdVisita;
+    private String idPersona;
+
+    @Column(name = "estado_servicio", nullable = false)
+    private String estadoServicio;
 
     public Integer getIdServicio() {
         return idServicio;
@@ -82,19 +85,27 @@ public class ServicioEntity {
         this.fechaBajaServicio = fechaBajaServicio;
     }
 
-    public String getEpisodioIdEpisodio() {
-        return episodioIdEpisodio;
+    public String getIdCliente() {
+        return idCliente;
     }
 
-    public void setEpisodioIdEpisodio(String episodioIdEpisodio) {
-        this.episodioIdEpisodio = episodioIdEpisodio;
+    public void setIdCliente(String idCliente) {
+        this.idCliente = idCliente;
     }
 
-    public String getVisitaIdVisita() {
-        return visitaIdVisita;
+    public String getIdPersona() {
+        return idPersona;
     }
 
-    public void setVisitaIdVisita(String visitaIdVisita) {
-        this.visitaIdVisita = visitaIdVisita;
+    public void setIdPersona(String idPersona) {
+        this.idPersona = idPersona;
+    }
+
+    public String getEstadoServicio() {
+        return estadoServicio;
+    }
+
+    public void setEstadoServicio(String estadoServicio) {
+        this.estadoServicio = estadoServicio;
     }
 }
