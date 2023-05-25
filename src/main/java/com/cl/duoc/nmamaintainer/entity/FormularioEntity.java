@@ -89,7 +89,7 @@ public class FormularioEntity {
     private String cargoElaboradorInforme;
 
     @Column(name = "telefono_elaborador_informe", nullable = false)
-    private Date telefonoElaboradorInforme;
+    private String telefonoElaboradorInforme;
 
     @Column(name = "nombre_revisador", nullable = false)
     private String nombreRevisador;
@@ -99,10 +99,6 @@ public class FormularioEntity {
 
     @Column(name = "fecha_revision", nullable = false)
     private Date fechaRevision;
-
-    @Lob
-    @Column(name = "anexos")
-    private byte[] anexos;
 
     @Column(name = "id_cliente", nullable = false)
     private String idCliente;
@@ -318,11 +314,11 @@ public class FormularioEntity {
         this.cargoElaboradorInforme = cargoElaboradorInforme;
     }
 
-    public Date getTelefonoElaboradorInforme() {
+    public String getTelefonoElaboradorInforme() {
         return telefonoElaboradorInforme;
     }
 
-    public void setTelefonoElaboradorInforme(Date telefonoElaboradorInforme) {
+    public void setTelefonoElaboradorInforme(String telefonoElaboradorInforme) {
         this.telefonoElaboradorInforme = telefonoElaboradorInforme;
     }
 
@@ -348,14 +344,6 @@ public class FormularioEntity {
 
     public void setFechaRevision(Date fechaRevision) {
         this.fechaRevision = fechaRevision;
-    }
-
-    public byte[] getAnexos() {
-        return anexos;
-    }
-
-    public void setAnexos(byte[] anexos) {
-        this.anexos = anexos;
     }
 
     public String getIdCliente() {

@@ -6,13 +6,17 @@ public class LoginResponse {
 
     private String idUsuario;
 
+    private String idEmpresa;
+
+
     public LoginResponse() {
     }
 
-    public LoginResponse(String message, String rol, String idUsuario) {
+    public LoginResponse(String message, String rol, String idUsuario, String idEmpresa) {
         this.message = message;
         this.rol = rol;
         this.idUsuario = idUsuario;
+        this.idEmpresa = idEmpresa;
     }
 
     public String getMessage() {
@@ -37,5 +41,13 @@ public class LoginResponse {
 
     public void setIdUsuario(String idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public String getIdEmpresa() {
+        return idEmpresa;
+    }
+
+    public void setIdEmpresa(String idEmpresa) {
+        this.idEmpresa = idEmpresa;
     }
 }

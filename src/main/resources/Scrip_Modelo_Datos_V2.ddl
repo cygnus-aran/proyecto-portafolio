@@ -27,7 +27,7 @@ CREATE USER nma_admin WITH PASSWORD 'admin';
 GRANT ALL PRIVILEGES ON SCHEMA nma TO nma_admin;
 ALTER ROLE nma_admin SET search_path TO nma;
 
-CREATE TABLE cliente (
+CREATE TABLE nma.cliente (
                          id SERIAL PRIMARY KEY,
                          id_empresa          VARCHAR(255) NOT NULL,
                          rut_empresa         VARCHAR(255) NOT NULL,
