@@ -70,7 +70,8 @@ public class ClientRegisterServiceImpl implements ClientRegisterService {
         }
         response.setStatus("Exito");
         response.getClientes().add(update);
-        return response;    }
+        return response;
+    }
 
     @Override
     public ClientRegisterResponse delete(ClientRegisterRequest clientRegisterRequest) {

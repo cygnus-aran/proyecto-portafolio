@@ -167,6 +167,18 @@ CREATE TABLE contrato (
                         id_cliente_contrato VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE checklist (
+                        id_checklist         SERIAL PRIMARY KEY,
+                        estado_checklist     VARCHAR(255) NOT NULL,
+                        comentario           VARCHAR(255) NOT NULL,
+                        id_cliente           VARCHAR(255) NOT NULL,
+                        id_profesional       VARCHAR(255) NOT NULL,
+                        nombre_checklist     VARCHAR(255) NOT NULL,
+                        fecha_creacion       DATE NOT NULL,
+                        fecha_revision       DATE NOT NULL,
+                        fecha_cierre         DATE NOT NULL
+);
+
 
 --
 --
