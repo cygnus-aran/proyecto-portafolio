@@ -180,6 +180,15 @@ CREATE TABLE checklist (
                         id_visita            VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE asesoria (
+                        id_asesoria          SERIAL PRIMARY KEY,
+                        fecha_asesoria       VARCHAR(255) NOT NULL,
+                        cliente_asesoria     VARCHAR(255) NOT NULL,
+                        id_profesional       VARCHAR(255) NOT NULL,
+                        nombre_profesional   VARCHAR(255) NOT NULL,
+                        nombre_checklist     VARCHAR(255) NOT NULL
+);
+
 
 --
 --
