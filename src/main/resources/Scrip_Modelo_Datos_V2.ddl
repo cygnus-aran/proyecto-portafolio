@@ -176,7 +176,8 @@ CREATE TABLE checklist (
                         nombre_checklist     VARCHAR(255) NOT NULL,
                         fecha_creacion       DATE NOT NULL,
                         fecha_revision       DATE NOT NULL,
-                        fecha_cierre         DATE NOT NULL
+                        fecha_cierre         DATE NOT NULL,
+                        id_visita            VARCHAR(255) NOT NULL
 );
 
 

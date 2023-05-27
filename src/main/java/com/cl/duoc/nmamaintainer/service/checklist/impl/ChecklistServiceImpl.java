@@ -23,23 +23,22 @@ public class ChecklistServiceImpl implements ChecklistService {
     @Override
     public ChecklistRegisterResponse register(ChecklistRegisterRequest ChecklistRegisterRequest) {
         ChecklistRegisterResponse response = new ChecklistRegisterResponse();
-        ChecklistEntity save = checklistRepository.save(ChecklistRegisterRequest.getChecklists().get(0));
+        List<ChecklistEntity> save = checklistRepository.saveAll(ChecklistRegisterRequest.getChecklists());
         response.setOperation("Guardado");
         if(save == null) {
             response.setStatus("Error");
             return response;
         }
         response.setStatus("Exito");
-        List<ChecklistEntity> checklists = new ArrayList<ChecklistEntity>();
-        response.setChecklists(checklists);
-        response.getChecklists().add(save);
+        List<ChecklistEntity> checklists = save;
+        response.setChecklists(save);
         return response;
     }
 
     @Override
     public ChecklistRegisterResponse find(ChecklistRegisterRequest ChecklistRegisterRequest) {
         ChecklistRegisterResponse response = new ChecklistRegisterResponse();
-        Optional<ChecklistEntity> find = Optional.ofNullable(checklistRepository.findById(ChecklistRegisterRequest.getChecklists().get(0).getId()));
+        Optional<ChecklistEntity> find = checklistRepository.findById(ChecklistRegisterRequest.getChecklists().get(0).getId());
         response.setOperation("Encontrar");
         response.setStatus("Exito");
         response.getChecklists().add(find.get());
