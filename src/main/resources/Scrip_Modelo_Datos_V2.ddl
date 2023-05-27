@@ -26,6 +26,7 @@ CREATE SCHEMA nma;
 CREATE USER nma_admin WITH PASSWORD 'admin';
 GRANT ALL PRIVILEGES ON SCHEMA nma TO nma_admin;
 ALTER ROLE nma_admin SET search_path TO nma;
+SET SCHEMA 'nma';
 
 CREATE TABLE nma.cliente (
                          id SERIAL PRIMARY KEY,
@@ -87,13 +88,13 @@ CREATE TABLE formulario (
                             cargo_testigo             VARCHAR(255),
                             elaborador_informe        VARCHAR(255) NOT NULL,
                             cargo_elaborador_informe  VARCHAR(255) NOT NULL,
-                            fecha_informe             DATE NOT NULL,
+                            fecha_informe             DATE,
                             nombre_revisador          VARCHAR(255) NOT NULL,
                             cargo_revisador           VARCHAR(255) NOT NULL,
                             fecha_revision            DATE NOT NULL,
-                            anexos                    BYTEA,
                             id_cliente                VARCHAR(255) NOT NULL,
-                            rut_trabajador            VARCHAR(255) NOT NULL
+                            rut_trabajador            VARCHAR(255) NOT NULL,
+                            telefono_elaborador_informe VARCHAR(255)
 );
 
 
@@ -185,8 +186,7 @@ CREATE TABLE asesoria (
                         fecha_asesoria       VARCHAR(255) NOT NULL,
                         cliente_asesoria     VARCHAR(255) NOT NULL,
                         id_profesional       VARCHAR(255) NOT NULL,
-                        nombre_profesional   VARCHAR(255) NOT NULL,
-                        nombre_checklist     VARCHAR(255) NOT NULL
+                        nombre_profesional   VARCHAR(255) NOT NULL
 );
 
 
