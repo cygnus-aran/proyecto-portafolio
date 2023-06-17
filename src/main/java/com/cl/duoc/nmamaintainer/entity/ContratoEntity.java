@@ -22,14 +22,39 @@ public class ContratoEntity {
     @Column(name = "id_cliente_contrato", nullable = false)
     private String idClienteContrato;
 
+    @Column(name = "cantidad_visita", nullable = false)
+    private String cantidadVisita;
+
+    @Column(name = "cantidad_servicio", nullable = false)
+    private String cantidadServicio;
+
+
     public ContratoEntity() {
     }
 
-    public ContratoEntity(Integer idContrato, LocalDate fechaContrato, String estadoContrato, String idClienteContrato) {
+    public ContratoEntity(Integer idContrato, LocalDate fechaContrato, String estadoContrato, String idClienteContrato, String cantidadVisita, String cantidadServicio) {
         this.idContrato = idContrato;
         this.fechaContrato = fechaContrato;
         this.estadoContrato = estadoContrato;
         this.idClienteContrato = idClienteContrato;
+        this.cantidadVisita = cantidadVisita;
+        this.cantidadServicio = cantidadServicio;
+    }
+
+    public String getCantidadVisita() {
+        return cantidadVisita;
+    }
+
+    public void setCantidadVisita(String cantidadVisita) {
+        this.cantidadVisita = cantidadVisita;
+    }
+
+    public String getCantidadServicio() {
+        return cantidadServicio;
+    }
+
+    public void setCantidadServicio(String cantidadServicio) {
+        this.cantidadServicio = cantidadServicio;
     }
 
     public Integer getIdContrato() {

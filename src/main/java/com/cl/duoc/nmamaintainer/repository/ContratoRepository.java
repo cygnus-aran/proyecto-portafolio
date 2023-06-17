@@ -14,6 +14,8 @@ public interface ContratoRepository extends JpaRepository<ContratoEntity, Intege
 
     ContratoEntity save(ContratoEntity contrato);
     ContratoEntity findByIdContrato(Integer idContrato);
+
+    ContratoEntity findByIdClienteContrato(String idCliente);
     List<ContratoEntity> findAll();
     ContratoEntity saveAndFlush(ContratoEntity contrato);
     @Modifying

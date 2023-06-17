@@ -23,7 +23,7 @@ public class ContratoController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PostMapping("/register")
+    @PostMapping("/register-contrato")
     public ResponseEntity<Response<ContratoResponse>> registerContrato(@RequestBody ContratoRequest contratoRequest) {
         ContratoResponse contratoResponse = contratoService.register(contratoRequest);
         Response<ContratoResponse> response = new Response<>(HttpStatus.CREATED.value(), "Registro Creado", contratoResponse);
