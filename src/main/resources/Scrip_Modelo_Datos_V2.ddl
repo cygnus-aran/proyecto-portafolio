@@ -28,7 +28,7 @@ GRANT ALL PRIVILEGES ON SCHEMA nma TO nma_admin;
 ALTER ROLE nma_admin SET search_path TO nma;
 SET SCHEMA 'nma';
 
-CREATE TABLE nma.cliente (
+CREATE TABLE cliente (
                          id SERIAL PRIMARY KEY,
                          id_empresa          VARCHAR(255) NOT NULL,
                          rut_empresa         VARCHAR(255) NOT NULL,
@@ -38,7 +38,9 @@ CREATE TABLE nma.cliente (
                          responsable_empresa VARCHAR(255),
                          estado_empresa      VARCHAR(255) NOT NULL,
                          usuario_id_usuario  VARCHAR(255) NOT NULL,
-                         rol_id_rol          VARCHAR(255) NOT NULL
+                         rol_id_rol          VARCHAR(255) NOT NULL,
+                         cantidad_empleados  VARCHAR(255) NOT NULL
+
 );
 
 

@@ -36,6 +36,25 @@ public class ClienteEntity {
 
     @Column(name = "rol_id_rol", nullable = false)
     private String rolIdRol;
+    @Column(name = "cantidad_empleados", nullable = false)
+    private String cantidadEmpleados;
+
+    public ClienteEntity(Integer id, String idEmpresa, String rutEmpresa, String nombreEmpresa, String fonoEmpresa, String emailEmpresa, String responsableEmpresa, String estadoEmpresa, String usuarioIdUsuario, String rolIdRol, String cantidadEmpleados) {
+        this.id = id;
+        this.idEmpresa = idEmpresa;
+        this.rutEmpresa = rutEmpresa;
+        this.nombreEmpresa = nombreEmpresa;
+        this.fonoEmpresa = fonoEmpresa;
+        this.emailEmpresa = emailEmpresa;
+        this.responsableEmpresa = responsableEmpresa;
+        this.estadoEmpresa = estadoEmpresa;
+        this.usuarioIdUsuario = usuarioIdUsuario;
+        this.rolIdRol = rolIdRol;
+        this.cantidadEmpleados = cantidadEmpleados;
+    }
+
+    public ClienteEntity() {
+    }
 
     public Integer getId() {
         return id;
@@ -115,5 +134,13 @@ public class ClienteEntity {
 
     public void setRolIdRol(String rolIdRol) {
         this.rolIdRol = rolIdRol;
+    }
+
+    public String getCantidadEmpleados() {
+        return cantidadEmpleados;
+    }
+
+    public void setCantidadEmpleados(String cantidadEmpleados) {
+        this.cantidadEmpleados = cantidadEmpleados;
     }
 }
