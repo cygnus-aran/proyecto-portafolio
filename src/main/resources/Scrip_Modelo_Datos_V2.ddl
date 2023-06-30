@@ -170,7 +170,8 @@ CREATE TABLE contrato (
                         id_cliente_contrato VARCHAR(255) NOT NULL,
                         cantidad_visita     VARCHAR(255) NOT NULL,
                         cantidad_servicio   VARCHAR(255) NOT NULL,
-                        total_contrato      VARCHAR(255)
+                        total_contrato      VARCHAR(255),
+                        fecha_vencimiento   DATE NOT NULL
 );
 
 CREATE TABLE checklist (

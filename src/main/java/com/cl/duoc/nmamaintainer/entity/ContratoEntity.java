@@ -31,11 +31,13 @@ public class ContratoEntity {
     @Column(name = "total_contrato")
     private String totalContrato;
 
+    @Column(name = "fecha_vencimiento")
+    private LocalDate fechaVencimiento;
 
     public ContratoEntity() {
     }
 
-    public ContratoEntity(Integer idContrato, LocalDate fechaContrato, String estadoContrato, String idClienteContrato, String cantidadVisita, String cantidadServicio, String totalContrato) {
+    public ContratoEntity(Integer idContrato, LocalDate fechaContrato, String estadoContrato, String idClienteContrato, String cantidadVisita, String cantidadServicio, String totalContrato, LocalDate fechaVencimiento) {
         this.idContrato = idContrato;
         this.fechaContrato = fechaContrato;
         this.estadoContrato = estadoContrato;
@@ -43,22 +45,7 @@ public class ContratoEntity {
         this.cantidadVisita = cantidadVisita;
         this.cantidadServicio = cantidadServicio;
         this.totalContrato = totalContrato;
-    }
-
-    public String getCantidadVisita() {
-        return cantidadVisita;
-    }
-
-    public void setCantidadVisita(String cantidadVisita) {
-        this.cantidadVisita = cantidadVisita;
-    }
-
-    public String getCantidadServicio() {
-        return cantidadServicio;
-    }
-
-    public void setCantidadServicio(String cantidadServicio) {
-        this.cantidadServicio = cantidadServicio;
+        this.fechaVencimiento = fechaVencimiento;
     }
 
     public Integer getIdContrato() {
@@ -93,11 +80,35 @@ public class ContratoEntity {
         this.idClienteContrato = idClienteContrato;
     }
 
+    public String getCantidadVisita() {
+        return cantidadVisita;
+    }
+
+    public void setCantidadVisita(String cantidadVisita) {
+        this.cantidadVisita = cantidadVisita;
+    }
+
+    public String getCantidadServicio() {
+        return cantidadServicio;
+    }
+
+    public void setCantidadServicio(String cantidadServicio) {
+        this.cantidadServicio = cantidadServicio;
+    }
+
     public String getTotalContrato() {
         return totalContrato;
     }
 
     public void setTotalContrato(String totalContrato) {
         this.totalContrato = totalContrato;
+    }
+
+    public LocalDate getFechaVencimiento() {
+        return fechaVencimiento;
+    }
+
+    public void setFechaVencimiento(LocalDate fechaVencimiento) {
+        this.fechaVencimiento = fechaVencimiento;
     }
 }
